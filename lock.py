@@ -170,10 +170,13 @@ def Motor(x, negative, positive):
     except KeyboardInterrupt:
         GPIO.cleanup()
 
-while True:
-    Forward()
-    Motor(x)
-    time.sleep(1)
-    Backward()
-    Motor(x)
-    time.sleep(1)
+try:
+    while True:
+        Forward()
+        Motor(x, negative, positive)
+        time.sleep(1)
+        Backward()
+        Motor(x, negative, positive)
+        time.sleep(1)
+except KeyboardInterrupt:
+        GPIO.cleanup()
