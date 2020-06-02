@@ -170,7 +170,7 @@ def Motor():
     except KeyboardInterrupt:
         GPIO.cleanup()
 
-try:
+#try:
     while True:
         Forward()
         Motor()
@@ -178,6 +178,6 @@ try:
         Backward()
         Motor()
         time.sleep(1)
-except:
-    print(Exception)
-    GPIO.cleanup()
+#except:
+    #print(Exception)
+    #GPIO.cleanup()
