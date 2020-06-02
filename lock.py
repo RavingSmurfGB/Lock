@@ -25,12 +25,12 @@ timings = 0.001
 print("Program Loading...")
 
 
-def Forward(x):
+def Forward():
     print("I moved forward")
     x = 200
     return(x)
 
-def Backward(x):
+def Backward():
     print("I moved backward")
     x = -200
     return(x)
@@ -176,10 +176,10 @@ def Motor(x, negative, positive):
 
 try:
     while True:
-        Forward()
+        x = Forward()
         Motor(x, negative, positive)
         time.sleep(1)
-        Backward()
+        x = Backward()
         Motor(x, negative, positive)
         time.sleep(1)
 except KeyboardInterrupt:
