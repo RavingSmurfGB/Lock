@@ -42,7 +42,7 @@ def Motor(x, negative, positive):
         GPIO.output(out2,GPIO.LOW)
         GPIO.output(out3,GPIO.LOW)
         GPIO.output(out4,GPIO.LOW)
-        if x>0 and x<=800:
+        if x>0 and x<=780:
             for y in range(x,0,-1):
                 if negative==1:
                     if i==7:
@@ -106,7 +106,7 @@ def Motor(x, negative, positive):
                 i=i+1
 
 
-        elif x<0 and x>=-800:
+        elif x<0 and x>=-780:
             x=x*-1
             for y in range(x,0,-1):
                 if positive==1:
@@ -175,13 +175,13 @@ def Motor(x, negative, positive):
         GPIO.cleanup()
 
 #try:
-    while True:
-        Forward()
-        Motor(x, negative, positive)
-        time.sleep(1)
-        Backward()
-        Motor(x, negative, positive)
-        time.sleep(1)
+while True:
+    Forward()
+    Motor(x, negative, positive)
+    time.sleep(1)
+    Backward()
+    Motor(x, negative, positive)
+    time.sleep(1)
 #except:
     #print(Exception)
     #GPIO.cleanup()
