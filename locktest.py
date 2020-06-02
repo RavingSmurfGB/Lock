@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 #Setting optional variables
-rotations = 10
+rotations = 50
 timings = 0.001
 
 ### Declaring pins for the motor control 
