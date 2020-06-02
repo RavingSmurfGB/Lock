@@ -165,8 +165,8 @@ def Motor():
                 i=i-1
 
 
-        except KeyboardInterrupt:
-            GPIO.cleanup()
+    except KeyboardInterrupt:
+        GPIO.cleanup()
 
 while True:
     Forward()
