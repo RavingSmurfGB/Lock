@@ -137,9 +137,9 @@ except:
 
 try:
     while True:
-        Lock()
+        Lock(rotations)
         time.sleep(1)
-        Unlock()
+        Unlock(rotations)
         time.sleep(1)
 except KeyboardInterrupt:
         GPIO.cleanup()
