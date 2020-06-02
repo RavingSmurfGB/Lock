@@ -1,5 +1,35 @@
 import RPi.GPIO as GPIO
-import time
+import time, logging
+
+##////////////////logging Setup/////////////////
+
+# create logger with the name 'SleepyServer'
+logger = logging.getLogger('DoorLock')
+logger.setLevel(logging.DEBUG)
+# create file handler which logs even debug messages
+fh = logging.FileHandler('DoorLock.log')
+fh.setLevel(logging.DEBUG)
+# create console handler with a higher log level
+ch = logging.StreamHandler()
+ch.setLevel(logging.ERROR)
+
+##this part is to easily seperate lines before the new logs are created - not really needed
+startingstring = " \n" + " \n" 
+logger.addHandler(fh)
+logger.addHandler(ch)
+logger.info(startingstring + startingstring + startingstring )
+
+# create formatter and add it to the handlers
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+ch.setFormatter(formatter)
+# add the handlers to the logger
+logger.addHandler(fh)
+logger.addHandler(ch)
+
+logger.info('START')
+print("Start")
+##////////////////
 
 ### Declaring pins for the motor control 
 out1 = 13
@@ -20,12 +50,14 @@ y=0
 timings = 0.001
 
 print("Program Loading...")
+logger.info("Program Loading...")
 
 def Lock():
     global positive
     global negative
     global i 
     global y
+    logger.info("I locked the door")
     print("I locked the door")
     x = 200
     for y in range(x,0,-1):
@@ -95,6 +127,7 @@ def Unlock():
     global negative
     global i 
     global y
+    logger.info("I un-locked the door")
     print("I un-locked the door")
     x = -200
     x=x*-1
