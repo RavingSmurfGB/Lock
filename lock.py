@@ -178,5 +178,5 @@ try:
         Backward()
         Motor(x, negative, positive)
         time.sleep(1)
-except KeyboardInterrupt:
-        GPIO.cleanup()
+except:
+    GPIO.cleanup()
