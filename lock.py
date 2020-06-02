@@ -2,23 +2,7 @@ import RPi.GPIO as GPIO
 import pathlib as Path
 import time, logging
 
-##////////////////Check if file exists/////////////////
-try:
-    my_file = Path("status.txt")
-    if my_file.is_file():
-        print("file exists")
-    else:
-        print("file does not exists")
-        f = open("status.txt", "x")
-        f.close()
-except:
-    print("File error :( ")
-##////////////////
 
-##////////////////If file status was locked on last startup/////////////////
-
-
-##////////////////
 
 ##////////////////logging Setup/////////////////
 
@@ -67,6 +51,23 @@ positive=0
 negative=0
 y=0
 timings = 0.001
+
+
+
+##////////////////Check if file exists/////////////////
+try:
+    my_file = Path("status.txt")
+    if my_file.is_file():
+        print("file exists")
+    else:
+        print("file does not exists")
+        f = open("status.txt", "x")
+        f.close()
+except:
+    print("File error :( ")
+##////////////////
+
+
 
 print("Program Loading...")
 logger.info("Program Loading...")
@@ -218,6 +219,26 @@ def Unlock():
             continue
         i=i-1
     return(x)
+
+
+##////////////////If file status was locked on last startup/////////////////
+try:
+    f = open("status.txt", "rt")
+    contents = f.read()
+    f.close()
+    if contents == "locked":
+        print("Locked on last shutdown, unlocking door")
+        logger.info("Locked on last shutdown, unlocking door")
+        Unlock()
+        f = open("status.txt", "w")
+        f.write("unlocked")
+        f.close()
+    else:
+        print("lock was already unlocked...")
+
+except:
+    print("something went wrong help me")
+##////////////////
 
 try:
     while True:
