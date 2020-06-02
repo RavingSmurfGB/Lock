@@ -80,7 +80,7 @@ except:
 
 ##////////////////Lock code/////////////////
 
-def Lock(rotations):
+def Lock():
     logger.info("I locked the door")
     print("I locked the door")
     f = open("status.txt", "w")
@@ -97,7 +97,7 @@ def Lock(rotations):
                     GPIO.output(pins[pin], halfstep_seq[step][pin])
                 time.sleep(timings)
 
-def Unlock(rotations):
+def Unlock():
     logger.info("I un-locked the door")
     print("I un-locked the door")
     f = open("status.txt", "w")
@@ -137,9 +137,9 @@ except:
 
 try:
     while True:
-        Lock(rotations)
+        Lock()
         time.sleep(1)
-        Unlock(rotations)
+        Unlock()
         time.sleep(1)
 except KeyboardInterrupt:
         GPIO.cleanup()
