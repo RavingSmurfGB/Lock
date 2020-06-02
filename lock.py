@@ -25,12 +25,12 @@ timings = 0.001
 print("Program Loading...")
 
 
-def Forward():
+def Forward(x):
     print("I moved forward")
     x = 200
     return(x)
 
-def Backward():
+def Backward(x):
     print("I moved backward")
     x = -200
     return(x)
@@ -174,14 +174,16 @@ def Motor(x, negative, positive):
     except KeyboardInterrupt:
         GPIO.cleanup()
 
-#try:
-while True:
-    Forward()
-    Motor(x, negative, positive)
-    time.sleep(1)
-    Backward()
-    Motor(x, negative, positive)
-    time.sleep(1)
+try:
+    while True:
+        Forward()
+        Motor(x, negative, positive)
+        time.sleep(1)
+        Backward()
+        Motor(x, negative, positive)
+        time.sleep(1)
+except KeyboardInterrupt:
+    GPIO.cleanup()
 #except:
     #print(Exception)
     #GPIO.cleanup()
