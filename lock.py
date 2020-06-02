@@ -69,6 +69,9 @@ try:
         print("file does not exists")
         f = open("status.txt", "x")
         f.close()
+        f = open("status.txt", "w")
+        f.write("unlocked")
+        f.close()
 except:
     print("File error :( ")
 ##////////////////
