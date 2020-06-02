@@ -31,7 +31,7 @@ def Backward():
     x = -200
     return(x)
 
-def Motor(x, negative, positive):
+def Motor():
     try:
         print(x)
         GPIO.output(out1,GPIO.LOW)
