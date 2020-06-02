@@ -173,10 +173,11 @@ def Motor():
 try:
     while True:
         Forward()
-        Motor(x, negative, positive)
+        Motor()
         time.sleep(1)
         Backward()
-        Motor(x, negative, positive)
+        Motor()
         time.sleep(1)
 except:
+    print(Exception)
     GPIO.cleanup()
