@@ -25,9 +25,11 @@ print("First calibrate by giving some +ve and -ve values.....")
 def Forward():
     print("I moved forward")
     x= 200
+    Motor()
 def Backward():
     print("I moved backward")
     x= -200
+    Motor()
 
 def Motor():
     try:
