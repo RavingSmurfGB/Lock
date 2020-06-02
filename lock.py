@@ -1,11 +1,18 @@
 import RPi.GPIO as GPIO
 import time
 
+### Declaring pins for the motor control 
 out1 = 13
 out2 = 11
 out3 = 15
 out4 = 12
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(out1,GPIO.OUT)
+GPIO.setup(out2,GPIO.OUT)
+GPIO.setup(out3,GPIO.OUT)
+GPIO.setup(out4,GPIO.OUT)
 
+### Motor Variables
 i=0
 positive=0
 negative=0
@@ -13,25 +20,22 @@ y=0
 x = 0 
 timings = 0.001
 
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(out1,GPIO.OUT)
-GPIO.setup(out2,GPIO.OUT)
-GPIO.setup(out3,GPIO.OUT)
-GPIO.setup(out4,GPIO.OUT)
 
-print("First calibrate by giving some +ve and -ve values.....")
+
+print("Program Loading...")
 
 
 def Forward():
     print("I moved forward")
     x = 200
     return(x)
+
 def Backward():
     print("I moved backward")
     x = -200
     return(x)
 
-def Motor():
+def Motor(x, negative, positive):
     try:
         print(x)
         GPIO.output(out1,GPIO.LOW)
@@ -165,7 +169,7 @@ def Motor():
                     i=7
                     continue
                 i=i-1
-
+            return(x, negative, positive)
 
     except KeyboardInterrupt:
         GPIO.cleanup()
@@ -173,10 +177,10 @@ def Motor():
 #try:
     while True:
         Forward()
-        Motor()
+        Motor(x, negative, positive)
         time.sleep(1)
         Backward()
-        Motor()
+        Motor(x, negative, positive)
         time.sleep(1)
 #except:
     #print(Exception)
