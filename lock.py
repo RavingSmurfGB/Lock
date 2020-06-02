@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-import pathlib as Path
+from pathlib import Path
 import time, logging
 
 
