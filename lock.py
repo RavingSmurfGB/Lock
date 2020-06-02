@@ -21,7 +21,7 @@ timings = 0.001
 
 print("Program Loading...")
 
-def Forward():
+def Lock():
     global positive
     global negative
     global i 
@@ -90,7 +90,7 @@ def Forward():
             continue
         i=i+1
 
-def Backward():
+def Unlock():
     global positive
     global negative
     global i 
@@ -107,63 +107,54 @@ def Backward():
             y=y+3
             positive=0
         negative=1
-        #print((x+1)-y)
         if i==0:
             GPIO.output(out1,GPIO.HIGH)
             GPIO.output(out2,GPIO.LOW)
             GPIO.output(out3,GPIO.LOW)
             GPIO.output(out4,GPIO.LOW)
             time.sleep(timings)
-            #time.sleep(1)
         elif i==1:
             GPIO.output(out1,GPIO.HIGH)
             GPIO.output(out2,GPIO.HIGH)
             GPIO.output(out3,GPIO.LOW)
             GPIO.output(out4,GPIO.LOW)
             time.sleep(timings)
-            #time.sleep(1)
         elif i==2:
             GPIO.output(out1,GPIO.LOW)
             GPIO.output(out2,GPIO.HIGH)
             GPIO.output(out3,GPIO.LOW)
             GPIO.output(out4,GPIO.LOW)
             time.sleep(timings)
-            #time.sleep(1)
         elif i==3:
             GPIO.output(out1,GPIO.LOW)
             GPIO.output(out2,GPIO.HIGH)
             GPIO.output(out3,GPIO.HIGH)
             GPIO.output(out4,GPIO.LOW)
             time.sleep(timings)
-            #time.sleep(1)
         elif i==4:
             GPIO.output(out1,GPIO.LOW)
             GPIO.output(out2,GPIO.LOW)
             GPIO.output(out3,GPIO.HIGH)
             GPIO.output(out4,GPIO.LOW)
             time.sleep(timings)
-            #time.sleep(1)
         elif i==5:
             GPIO.output(out1,GPIO.LOW)
             GPIO.output(out2,GPIO.LOW)
             GPIO.output(out3,GPIO.HIGH)
             GPIO.output(out4,GPIO.HIGH)
             time.sleep(timings)
-            #time.sleep(1)
         elif i==6:
             GPIO.output(out1,GPIO.LOW)
             GPIO.output(out2,GPIO.LOW)
             GPIO.output(out3,GPIO.LOW)
             GPIO.output(out4,GPIO.HIGH)
             time.sleep(timings)
-            #time.sleep(1)
         elif i==7:
             GPIO.output(out1,GPIO.HIGH)
             GPIO.output(out2,GPIO.LOW)
             GPIO.output(out3,GPIO.LOW)
             GPIO.output(out4,GPIO.HIGH)
             time.sleep(timings)
-            #time.sleep(1)
         if i==0:
             i=7
             continue
@@ -172,9 +163,9 @@ def Backward():
 
 try:
     while True:
-        Forward()
+        Lock()
         time.sleep(1)
-        Backward()
+        Unlock()
         time.sleep(1)
 except KeyboardInterrupt:
         GPIO.cleanup()
