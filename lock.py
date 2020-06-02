@@ -25,13 +25,13 @@ print("First calibrate by giving some +ve and -ve values.....")
 def Forward():
     print("I moved forward")
     x = 200
-    Motor()
+    Motor(x)
 def Backward():
     print("I moved backward")
     x = -200
-    Motor()
+    Motor(x)
 
-def Motor():
+def Motor(x):
     try:
         print(x)
         GPIO.output(out1,GPIO.LOW)
