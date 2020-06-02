@@ -33,18 +33,19 @@ def Forward(rotations):
             for pin in range(4):
                 #Sets the pins as per the sequence 
                 GPIO.output(pins[pin], halfstep_seq[step][pin])
-            time.sleep(0.01) 
+            time.sleep(timings) 
 
 def Backward(rotations):
     #How many times to do a rotation
     for i in range(rotations):
         #start from the end of the sequence and move down 
         for step in range(8,0,-1):
+            step = step-1
             #loops through the pins
             for pin in range(4):
                 #Sets the pins as per the sequence 
                 GPIO.output(pins[pin], halfstep_seq[step][pin])
-            time.sleep(0.01) 
+            time.sleep(timings) 
 
 print("Program Loading...")
 
