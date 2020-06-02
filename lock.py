@@ -26,7 +26,7 @@ def Lock():
     global negative
     global i 
     global y
-    print("I moved forward")
+    print("I locked the door")
     x = 200
     for y in range(x,0,-1):
         if negative==1:
@@ -95,7 +95,7 @@ def Unlock():
     global negative
     global i 
     global y
-    print("I moved backward")
+    print("I un-locked the door")
     x = -200
     x=x*-1
     for y in range(x,0,-1):
