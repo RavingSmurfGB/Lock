@@ -33,23 +33,30 @@ logger.info("Program Loading...")
 ##////////////////
 
 
-##////////////////Declaring pins & motor control/////////////////
-out1 = 13
-out2 = 11
-out3 = 15
-out4 = 12
+##////////////////Declaring pins & motor control stuff/////////////////
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(out1,GPIO.OUT)
-GPIO.setup(out2,GPIO.OUT)
-GPIO.setup(out3,GPIO.OUT)
-GPIO.setup(out4,GPIO.OUT)
+
+pins = [13,11,15,12]
+for pin in pins: 
+    GPIO.setup(pin,GPIO.OUT)
 
 ### Motor Variables
-i=0
-positive=0
-negative=0
-y=0
+rotations = 50
+max_rotations = 90 # this is the max it should ever rotate 
 timings = 0.001
+
+#Setting the sequence for rotation
+halfstep_seq = [
+    [1,0,0,0],
+    [1,1,0,0],
+    [0,1,0,0],
+    [0,1,1,0],
+    [0,0,1,0],
+    [0,0,1,1],
+    [0,0,0,1],
+    [1,0,0,1]
+]
+
 ##///////////////
 
 
@@ -72,158 +79,41 @@ except:
 
 
 ##////////////////Lock code/////////////////
-def Lock():
-    global positive
-    global negative
-    global i 
-    global y
+
+def Lock(rotations):
     logger.info("I locked the door")
     print("I locked the door")
     f = open("status.txt", "w")
     f.write("locked")
     f.close()
-    x = 200
-    for y in range(x,0,-1):
-        if negative==1:
-            if i==7:
-                i=0
-            else:
-                i=i+1
-            y=y+2
-            negative=0
-        positive=1
-        if i==0:
-            GPIO.output(out1,GPIO.HIGH)
-            GPIO.output(out2,GPIO.LOW)
-            GPIO.output(out3,GPIO.LOW)
-            GPIO.output(out4,GPIO.LOW)
-            time.sleep(timings)
-        elif i==1:
-            GPIO.output(out1,GPIO.HIGH)
-            GPIO.output(out2,GPIO.HIGH)
-            GPIO.output(out3,GPIO.LOW)
-            GPIO.output(out4,GPIO.LOW)
-            time.sleep(timings)
-        elif i==2:
-            GPIO.output(out1,GPIO.LOW)
-            GPIO.output(out2,GPIO.HIGH)
-            GPIO.output(out3,GPIO.LOW)
-            GPIO.output(out4,GPIO.LOW)
-            time.sleep(timings)
-        elif i==3:
-            GPIO.output(out1,GPIO.LOW)
-            GPIO.output(out2,GPIO.HIGH)
-            GPIO.output(out3,GPIO.HIGH)
-            GPIO.output(out4,GPIO.LOW)
-            time.sleep(timings)
-        elif i==4:
-            GPIO.output(out1,GPIO.LOW)
-            GPIO.output(out2,GPIO.LOW)
-            GPIO.output(out3,GPIO.HIGH)
-            GPIO.output(out4,GPIO.LOW)
-            time.sleep(timings)
-        elif i==5:
-            GPIO.output(out1,GPIO.LOW)
-            GPIO.output(out2,GPIO.LOW)
-            GPIO.output(out3,GPIO.HIGH)
-            GPIO.output(out4,GPIO.HIGH)
-            time.sleep(timings)
-        elif i==6:
-            GPIO.output(out1,GPIO.LOW)
-            GPIO.output(out2,GPIO.LOW)
-            GPIO.output(out3,GPIO.LOW)
-            GPIO.output(out4,GPIO.HIGH)
-            time.sleep(timings)
-        elif i==7:
-            GPIO.output(out1,GPIO.HIGH)
-            GPIO.output(out2,GPIO.LOW)
-            GPIO.output(out3,GPIO.LOW)
-            GPIO.output(out4,GPIO.HIGH)
-            time.sleep(timings)
-        if i==7:
-            i=0
-            continue
-        i=i+1
-##////////////////
+    #How many times to do a rotation
+    if rotations > 0 and rotations <= max_rotations:
+        for i in range(rotations):
+            #start from the start of the sequence and move up 
+            for step in range(0,8,+1):
+                #loops through the pins
+                for pin in range(4):
+                    #Sets the pins as per the sequence 
+                    GPIO.output(pins[pin], halfstep_seq[step][pin])
+                time.sleep(timings)
 
-
-##////////////////Unlock code/////////////////
-def Unlock():
-    global positive
-    global negative
-    global i 
-    global y
+def Unlock(rotations):
     logger.info("I un-locked the door")
     print("I un-locked the door")
     f = open("status.txt", "w")
     f.write("unlocked")
     f.close()
-    x = -200
-    x=x*-1
-    for y in range(x,0,-1):
-        if positive==1:
-            if i==0:
-                i=7
-            else:
-                i=i-1
-            y=y+3
-            positive=0
-        negative=1
-        if i==0:
-            GPIO.output(out1,GPIO.HIGH)
-            GPIO.output(out2,GPIO.LOW)
-            GPIO.output(out3,GPIO.LOW)
-            GPIO.output(out4,GPIO.LOW)
-            time.sleep(timings)
-        elif i==1:
-            GPIO.output(out1,GPIO.HIGH)
-            GPIO.output(out2,GPIO.HIGH)
-            GPIO.output(out3,GPIO.LOW)
-            GPIO.output(out4,GPIO.LOW)
-            time.sleep(timings)
-        elif i==2:
-            GPIO.output(out1,GPIO.LOW)
-            GPIO.output(out2,GPIO.HIGH)
-            GPIO.output(out3,GPIO.LOW)
-            GPIO.output(out4,GPIO.LOW)
-            time.sleep(timings)
-        elif i==3:
-            GPIO.output(out1,GPIO.LOW)
-            GPIO.output(out2,GPIO.HIGH)
-            GPIO.output(out3,GPIO.HIGH)
-            GPIO.output(out4,GPIO.LOW)
-            time.sleep(timings)
-        elif i==4:
-            GPIO.output(out1,GPIO.LOW)
-            GPIO.output(out2,GPIO.LOW)
-            GPIO.output(out3,GPIO.HIGH)
-            GPIO.output(out4,GPIO.LOW)
-            time.sleep(timings)
-        elif i==5:
-            GPIO.output(out1,GPIO.LOW)
-            GPIO.output(out2,GPIO.LOW)
-            GPIO.output(out3,GPIO.HIGH)
-            GPIO.output(out4,GPIO.HIGH)
-            time.sleep(timings)
-        elif i==6:
-            GPIO.output(out1,GPIO.LOW)
-            GPIO.output(out2,GPIO.LOW)
-            GPIO.output(out3,GPIO.LOW)
-            GPIO.output(out4,GPIO.HIGH)
-            time.sleep(timings)
-        elif i==7:
-            GPIO.output(out1,GPIO.HIGH)
-            GPIO.output(out2,GPIO.LOW)
-            GPIO.output(out3,GPIO.LOW)
-            GPIO.output(out4,GPIO.HIGH)
-            time.sleep(timings)
-        if i==0:
-            i=7
-            continue
-        i=i-1
-    return(x)
-##////////////////
-
+    #How many times to do a rotation
+    if rotations > 0 and rotations <= max_rotations:
+        for i in range(rotations):
+            #start from the end of the sequence and move down 
+            for step in range(8,0,-1):
+                step = step-1
+                #loops through the pins
+                for pin in range(4):
+                    #Sets the pins as per the sequence 
+                    GPIO.output(pins[pin], halfstep_seq[step][pin])
+                time.sleep(timings) 
 
 
 ##////////////////If file status was locked on last startup/////////////////
