@@ -3,9 +3,7 @@ import pathlib as Path
 import time, logging
 
 
-
 ##////////////////logging Setup/////////////////
-
 # create logger with the name 'SleepyServer'
 logger = logging.getLogger('DoorLock')
 logger.setLevel(logging.DEBUG)
@@ -30,11 +28,12 @@ ch.setFormatter(formatter)
 logger.addHandler(fh)
 logger.addHandler(ch)
 
-logger.info('START')
-print("Start")
+print("Program Loading...")
+logger.info("Program Loading...")
 ##////////////////
 
-### Declaring pins for the motor control 
+
+##////////////////Declaring pins & motor control/////////////////
 out1 = 13
 out2 = 11
 out3 = 15
@@ -51,7 +50,7 @@ positive=0
 negative=0
 y=0
 timings = 0.001
-
+##///////////////
 
 
 ##////////////////Check if file exists/////////////////
@@ -69,9 +68,10 @@ except:
 
 
 
-print("Program Loading...")
-logger.info("Program Loading...")
 
+
+
+##////////////////Lock code/////////////////
 def Lock():
     global positive
     global negative
@@ -144,7 +144,10 @@ def Lock():
             i=0
             continue
         i=i+1
+##////////////////
 
+
+##////////////////Unlock code/////////////////
 def Unlock():
     global positive
     global negative
@@ -219,6 +222,8 @@ def Unlock():
             continue
         i=i-1
     return(x)
+##////////////////
+
 
 
 ##////////////////If file status was locked on last startup/////////////////
