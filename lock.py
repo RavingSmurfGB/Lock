@@ -10,7 +10,7 @@ i=0
 positive=0
 negative=0
 y=0
-x=0
+x = 0 
 timings = 0.001
 
 GPIO.setmode(GPIO.BOARD)
@@ -24,11 +24,11 @@ print("First calibrate by giving some +ve and -ve values.....")
 
 def Forward():
     print("I moved forward")
-    x= 200
+    x = 200
     Motor()
 def Backward():
     print("I moved backward")
-    x= -200
+    x = -200
     Motor()
 
 def Motor():
