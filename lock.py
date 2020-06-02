@@ -1,5 +1,24 @@
 import RPi.GPIO as GPIO
+import pathlib as Path
 import time, logging
+
+##////////////////Check if file exists/////////////////
+try:
+    my_file = Path("status.txt")
+    if my_file.is_file():
+        print("file exists")
+    else:
+        print("file does not exists")
+        f = open("status.txt", "x")
+        f.close()
+except:
+    print("File error :( ")
+##////////////////
+
+##////////////////If file status was locked on last startup/////////////////
+
+
+##////////////////
 
 ##////////////////logging Setup/////////////////
 
@@ -59,6 +78,9 @@ def Lock():
     global y
     logger.info("I locked the door")
     print("I locked the door")
+    f = open("status.txt", "w")
+    f.write("locked")
+    f.close()
     x = 200
     for y in range(x,0,-1):
         if negative==1:
@@ -129,6 +151,9 @@ def Unlock():
     global y
     logger.info("I un-locked the door")
     print("I un-locked the door")
+    f = open("status.txt", "w")
+    f.write("unlocked")
+    f.close()
     x = -200
     x=x*-1
     for y in range(x,0,-1):
