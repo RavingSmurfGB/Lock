@@ -180,10 +180,10 @@ def Motor(x):
 try:
     while True:
         x = Forward()
-        Motor(x, negative, positive)
+        Motor(x)
         time.sleep(1)
         x = Backward()
-        Motor(x, negative, positive)
+        Motor(x)
         time.sleep(1)
 except KeyboardInterrupt:
     GPIO.cleanup()
