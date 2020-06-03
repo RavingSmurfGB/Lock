@@ -37,3 +37,4 @@ try:
                 print("card was not matched")
 finally:
         GPIO.cleanup()
+        print("error")
