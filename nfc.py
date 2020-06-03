@@ -20,8 +20,6 @@ except:
     print("Unable to find or create file cards.txt ")
 
 
-
-
 try:
     with open("cards.txt", "r") as a_file:
         id, text = reader.read()
