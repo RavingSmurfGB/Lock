@@ -19,9 +19,9 @@ try:
 except:
     print("Unable to find or create file cards.txt ")
 
+id, text = reader.read()
 
-
-
+'''
 try:
     with open("cards.txt", "r") as a_file:
         id, text = reader.read()
@@ -36,3 +36,4 @@ try:
                 print("card was not matched")
 finally:
         GPIO.cleanup()
+        '''
