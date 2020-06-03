@@ -29,10 +29,11 @@ try:
             card = line.strip()
             if card == id: # insert variable for card instead of "3"
                 # IF card matches what is read then do this
-                #print(text)
+                print(id)
                 print(" - the card was matched")
             else:
                 # if not erm...
+                print(id)
                 print("card was not matched")
 finally:
         GPIO.cleanup()
