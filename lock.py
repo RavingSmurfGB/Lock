@@ -156,5 +156,13 @@ def alternate_lock():
         logger.info("Was not able to read file status.txt")
 
 
-
-##////////////////Main/////////////////
+if __name__ == "__main__":
+    ##////////////////Main/////////////////
+    try:
+        while True:
+            alternate_lock()
+            time.sleep(1)
+            alternate_lock()
+            time.sleep(1)
+    except KeyboardInterrupt:
+            GPIO.cleanup()
