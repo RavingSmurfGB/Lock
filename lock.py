@@ -121,7 +121,7 @@ def Unlock():
 
 
 ##////////////////If file status was locked on last startup/////////////////
-try:
+try: # this code builds in redundancy, if you dont have your key simply cycle the power to the device and it will unlock
     f = open("status.txt", "rt")
     contents = f.read()
     f.close()
