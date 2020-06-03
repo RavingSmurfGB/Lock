@@ -73,7 +73,8 @@ try:
         f.write("unlocked")
         f.close()
 except:
-    print("File error :( ")
+    print("Unable to find or create file status.txt ")
+    logger.info("Unable to find or create file status.txt ")
 ##////////////////
 
 
@@ -135,14 +136,32 @@ try:
         print("lock was already unlocked...")
 
 except:
-    print("something went wrong help me")
+    print("Unable to detect status.txt on boot")
+    logger.info("Unable to detect status.txt on boot")
 ##////////////////
 
+##////////////////Alternate lock/////////////////
+def alternate_lock():
+    f = open("status.txt", "rt")
+    contents = f.read()
+    f.close()
+    try:
+        if contents == "locked":
+            Unlock()
+        elif contents == "unlocked":
+            Lock()
+    except:
+        print("Was not able to read file status.txt")
+        logger.info("Was not able to read file status.txt")
+
+
+
+##////////////////Main/////////////////
 try:
     while True:
-        Lock()
+        alternate_lock()
         time.sleep(1)
-        Unlock()
+        alternate_lock()
         time.sleep(1)
 except KeyboardInterrupt:
         GPIO.cleanup()
