@@ -1,7 +1,7 @@
 from pathlib import Path
 
 
-## this script is an examply of how to create a file, and iterate through it to find the matching card
+## this script is an example of how to create a file, and iterate through it to find the matching card
 
 ##Check if file exsists
 try:
