@@ -24,17 +24,21 @@ except:
 
 try:
     with open("cards.txt", "r") as a_file:
-        id, text = reader.read()
+        #id, text = reader.read()
         for line in a_file:
             card = line.strip()
-            if card == id: # insert variable for card instead of "3"
+            if card == 3: # insert variable for card instead of "3"
                 # IF card matches what is read then do this
-                print(id)
+                
+                #print(id)
                 print(" - the card was matched")
             else:
                 # if not erm...
                 print(id)
                 print("card was not matched")
+
+except:
+    GPIO.cleanup()
 finally:
-        GPIO.cleanup()
-        print("error")
+    GPIO.cleanup()
+    print("error")
