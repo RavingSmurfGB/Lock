@@ -66,7 +66,8 @@ try:
     if my_file.is_file():
         print("file exists")
     else:
-        print("file does not exists")
+        print("status.txt does not exists and will be created")
+        logger.info("status.txt does not exists and will be created")
         f = open("status.txt", "x")
         f.close()
         f = open("status.txt", "w")
