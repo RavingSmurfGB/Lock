@@ -400,7 +400,7 @@ class MFRC522:
             print("Authentication error")
         i = i+1
 
-  def MFRC522_Init(self):
+  def MFRC522_Init(self, addr):
     GPIO.output(self.NRSTPD, 1)
   
     self.MFRC522_Reset()
