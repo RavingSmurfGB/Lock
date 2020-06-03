@@ -20,16 +20,18 @@ try:
 except:
     print("Unable to find or create file cards.txt ")
 
-
-with open("cards.txt", "r") as a_file:
-    nfcid, text = reader.read()
-    for line in a_file.readlines():
-        card = line.strip()
-        if card == str(nfcid): # insert variable for card instead of "3"
-            # IF card matches what is read then do this
-            print(str(nfcid) + " - the card was matched")
-            alternate_lock()
-        else:
-            # if not erm...
-            print(str(nfcid) + " card does not match")
+while True:
+    with open("cards.txt", "r") as a_file:
+        nfcid, text = reader.read()
+        for line in a_file.readlines():
+            card = line.strip()
+            if card == str(nfcid): # insert variable for card instead of "3"
+                # IF card matches what is read then do this
+                print(str(nfcid) + " - the card was matched")
+                alternate_lock()
+                time.sleep(2)
+            else:
+                # if not erm...
+                print(str(nfcid) + " card does not match")
+                time.sleep(2)
 
