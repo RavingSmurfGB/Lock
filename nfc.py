@@ -19,21 +19,17 @@ try:
 except:
     print("Unable to find or create file cards.txt ")
 
-
-
 try:
     with open("cards.txt", "r") as a_file:
-        id, text = reader.read()
-        for line in a_file:
+        nfcid, text = reader.read()
+        for line in a_file.readlines():
             card = line.strip()
-            if card == id: # insert variable for card instead of "3"
+            if card == nfcid: # insert variable for card instead of "3"
                 # IF card matches what is read then do this
-                print(id)
-                print(" - the card was matched")
+                print(nfcid + " - the card was matched")
             else:
                 # if not erm...
-                print(id)
-                print("card was not matched")
+                print(nfcid + " card was not matched")
 
 except:
     GPIO.cleanup()
