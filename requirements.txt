@@ -1,0 +1,3 @@
+#This will list out the requirements for this program to work
+SPI-Py #https://github.com/lthiery/SPI-Py ### NOTE THAT SPI HAS TO BE ENABLED ON THE RPI
+MFRC522-python # https://github.com/mxgxw/MFRC522-python # by defualt this libray is in python2, manual conversion is needed
