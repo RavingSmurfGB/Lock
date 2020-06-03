@@ -20,6 +20,7 @@ except:
     print("Unable to find or create file cards.txt ")
 
 
+
 try:
     with open("cards.txt", "r") as a_file:
         id, text = reader.read()
@@ -27,12 +28,13 @@ try:
             card = line.strip()
             if card == id: # insert variable for card instead of "3"
                 # IF card matches what is read then do this
-                
                 print(id)
+                print(card)
                 print(" - the card was matched")
             else:
                 # if not erm...
                 print(id)
+                print(card)
                 print("card was not matched")
 
 except:
