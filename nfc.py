@@ -24,10 +24,10 @@ with open("cards.txt", "r") as a_file:
     nfcid, text = reader.read()
     for line in a_file.readlines():
         card = line.strip()
-        if card == nfcid: # insert variable for card instead of "3"
+        if card == str(nfcid): # insert variable for card instead of "3"
             # IF card matches what is read then do this
             print(str(nfcid) + " - the card was matched")
         else:
             # if not erm...
-            print(str(nfcid) + " card was not matched")
+            print(str(nfcid) + " card does not match")
 
