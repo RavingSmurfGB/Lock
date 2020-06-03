@@ -2,6 +2,7 @@ from pathlib import Path
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 from lock import alternate_lock
+import time
 
 
 ## this script is an example of how to create a file, and iterate through it to find the matching card
