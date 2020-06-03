@@ -5,12 +5,7 @@ from mfrc522 import SimpleMFRC522
 
 ## this script is an example of how to create a file, and iterate through it to find the matching card
 
-
-
 reader = SimpleMFRC522()
-
-
-
 
 ##Check if file exsists
 try:
@@ -38,6 +33,6 @@ try:
                 print(" - the card was matched")
             else:
                 # if not erm...
-                print(id)
+                print("card was not matched")
 finally:
         GPIO.cleanup()
