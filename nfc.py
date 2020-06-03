@@ -27,7 +27,7 @@ try:
         id, text = reader.read()
         for line in a_file:
             card = line.strip()
-            if card == text: # insert variable for card instead of "3"
+            if card == "3": # insert variable for card instead of "3"
                 # IF card matches what is read then do this
                 #print(text)
                 print(" - the card was matched")
