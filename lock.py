@@ -158,11 +158,3 @@ def alternate_lock():
 
 
 ##////////////////Main/////////////////
-try:
-    while True:
-        alternate_lock()
-        time.sleep(1)
-        alternate_lock()
-        time.sleep(1)
-except KeyboardInterrupt:
-        GPIO.cleanup()
