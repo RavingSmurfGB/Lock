@@ -1,6 +1,7 @@
 from pathlib import Path
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
+from lock import alternate_lock
 
 
 ## this script is an example of how to create a file, and iterate through it to find the matching card
@@ -27,6 +28,7 @@ with open("cards.txt", "r") as a_file:
         if card == str(nfcid): # insert variable for card instead of "3"
             # IF card matches what is read then do this
             print(str(nfcid) + " - the card was matched")
+            alternate_lock()
         else:
             # if not erm...
             print(str(nfcid) + " card does not match")
