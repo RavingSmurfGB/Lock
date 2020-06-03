@@ -30,9 +30,10 @@ while True:
                 # IF card matches what is read then do this
                 print(str(nfcid) + " - the card was matched")
                 alternate_lock()
-                time.sleep(2)
+                
             else:
                 # if not erm...
                 print(str(nfcid) + " card does not match")
-                time.sleep(2)
+    time.sleep(2)
+                
 
