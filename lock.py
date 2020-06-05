@@ -28,8 +28,8 @@ ch.setFormatter(formatter)
 logger.addHandler(fh)
 logger.addHandler(ch)
 
-print("Program Loading...")
-logger.info("Program Loading...")
+#print("Lock Loading...")
+logger.info("Lock Loading...")
 ##////////////////
 
 
@@ -64,9 +64,10 @@ halfstep_seq = [
 try:
     my_file = Path("status.txt")
     if my_file.is_file():
-        print("file exists")
+        #print("file exists")
+        logger.info("file exists")
     else:
-        print("status.txt does not exists and will be created")
+        #print("status.txt does not exists and will be created")
         logger.info("status.txt does not exists and will be created")
         f = open("status.txt", "x")
         f.close()
@@ -87,7 +88,7 @@ except:
 
 def Lock():
     logger.info("I locked the door")
-    print("I locked the door")
+    #print("I locked the door")
     f = open("status.txt", "w")
     f.write("locked")
     f.close()
@@ -107,7 +108,7 @@ def Lock():
 
 def Unlock():
     logger.info("I un-locked the door")
-    print("I un-locked the door")
+    #print("I un-locked the door")
     f = open("status.txt", "w")
     f.write("unlocked")
     f.close()
@@ -133,17 +134,17 @@ try: # this code builds in redundancy, if you dont have your key simply cycle th
     contents = f.read()
     f.close()
     if contents == "locked":
-        print("Locked on last shutdown, unlocking door")
         logger.info("Locked on last shutdown, unlocking door")
         Unlock()
         f = open("status.txt", "w")
         f.write("unlocked")
         f.close()
     else:
-        print("lock was already unlocked...")
+        #print("lock was already unlocked...")
+        logger.info("lock was already unlocked...")
 
 except:
-    print("Unable to detect status.txt on boot")
+    #print("Unable to detect status.txt on boot")
     logger.info("Unable to detect status.txt on boot")
 ##////////////////
 
@@ -158,7 +159,7 @@ def alternate_lock():
         elif contents == "unlocked":
             Lock()
     except:
-        print("Was not able to read file status.txt")
+        #print("Was not able to read file status.txt")
         logger.info("Was not able to read file status.txt")
 
 '''

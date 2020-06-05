@@ -30,7 +30,7 @@ ch.setFormatter(formatter)
 logger.addHandler(fh)
 logger.addHandler(ch)
 
-print("NFC Loading...")
+#print("NFC Loading...")
 logger.info("NFC Loading...")
 ##////////////////
 
@@ -42,14 +42,15 @@ reader = SimpleMFRC522()
 try:
     my_file = Path("cards.txt")
     if my_file.is_file():
-        print("file exists")
+        #print("file exists")
+        logger.info("cards file does not exists and will be created")
     else:
-        print("cards file does not exists and will be created")
+        #print("cards file does not exists and will be created")
         logger.info("cards file does not exists and will be created")
         f = open("cards.txt", "x")
         f.close()
 except:
-    print("cards file does not exists and will be created")
+    #print("cards file does not exists and will be created")
     logger.info("cards file does not exists and will be created")
 
 while True:
@@ -62,13 +63,13 @@ while True:
             card = line.strip()
             if card == str(nfcid): # insert variable for card instead of "3"
                 # IF card matches what is read then do this
-                print(str(nfcid) + " - the card was matched")
+                #print(str(nfcid) + " - the card was matched")
                 logger.info(str(nfcid) + " - the card was matched")
                 alternate_lock()
                 
             else:
                 # if not erm...
-                print(str(nfcid) + " card does not match")
+                #print(str(nfcid) + " card does not match")
                 logger.info(str(nfcid) + " card does not match")
     time.sleep(2)
                 
