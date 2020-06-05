@@ -1,10 +1,8 @@
 from pathlib import Path
 import RPi.GPIO as GPIO
+from mfrc522 import SimpleMFRC522
 from lock import alternate_lock
 import time, logging
-from pirc522 import RFID
-
-rdr = RFID()
 
 
 ##////////////////logging Setup/////////////////
@@ -36,6 +34,9 @@ logger.addHandler(ch)
 logger.info("NFC Loading...")
 ##////////////////
 
+## this script is an example of how to create a file, and iterate through it to find the matching card
+
+reader = SimpleMFRC522()
 
 ##Check if file exsists
 try:
@@ -52,26 +53,25 @@ except:
     #print("cards file does not exists and will be created")
     logger.info("cards file does not exists and will be created")
 
-
-try:
-    while True:
-        rdr.wait_for_tag()
-        (error, tag_type) = rdr.request()
-        if not error:
-            print("Tag detected")
-            (error, uid) = rdr.anticoll()
-            if not error:
-                print("UID: " + str(uid))
+while True:
+    logger.info("waiting for card read")
+    nfcid, text = reader.read()
+    if nfcid is None:
+        time.sleep(2)
+        continue
+    with open("cards.txt", "r") as a_file:
+        for line in a_file.readlines():
+            card = line.strip()
+            if card == str(nfcid): # insert variable for card instead of "3"
+                # IF card matches what is read then do this
+                #print(str(nfcid) + " - the card was matched")
+                logger.info(str(nfcid) + " - the card was matched")
+                alternate_lock()
                 
-except KeyboardInterrupt:
-    rdr.cleanup()
-    GPIO.cleanup()
-except:
-    # Calls GPIO cleanup
-    rdr.cleanup()
-    GPIO.cleanup()
-
-
-
-
+            else:
+                # if not erm...
+                #print(str(nfcid) + " card does not match")
+                logger.info(str(nfcid) + " card does not match")
+    time.sleep(2)
+                
 
