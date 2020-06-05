@@ -53,7 +53,6 @@ except:
     logger.info("cards file does not exists and will be created")
 
 
-try:
     while True:
         rdr.wait_for_tag()
         (error, tag_type) = rdr.request()
@@ -63,13 +62,6 @@ try:
             if not error:
                 print("UID: " + str(uid))
                 
-except KeyboardInterrupt:
-    rdr.cleanup()
-    GPIO.cleanup()
-except:
-    # Calls GPIO cleanup
-    rdr.cleanup()
-    GPIO.cleanup()
 
 
 
