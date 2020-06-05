@@ -63,12 +63,18 @@ try:
             print("Tag detected")
             (error, uid) = rdr.anticoll()
             if not error:
-                nfcid = ":"
-                print(f"{datetime.datetime.now()} - UID: " + ':'.join(str(x) for x in uid))
-                logger.info(f"{datetime.datetime.now()} - UID: " + ':'.join(str(x) for x in uid))
+                nfcid = ':'.join(str(x) for x in uid)
+                print(f"{datetime.datetime.now()} - UID: " + nfcid)
+                logger.info(f"{datetime.datetime.now()} - UID: " + nfcid)
+                 with open("cards.txt", "r") as a_file:
+                    for line in a_file.readlines():
+                        card = line.strip()
+                        if card == nfcid:
+                            logger.info(f"{nfcid} was matched with allowed cards")
+                            alternate_lock()
         else:
             print(f"I have errored: {error}")
-            logger.info(f"I have errored: {error}")
+            logger.error(f"I have errored: {error}")
         time.sleep(2)
 except KeyboardInterrupt:
     GPIO.cleanup()
