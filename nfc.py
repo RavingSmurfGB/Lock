@@ -62,7 +62,7 @@ while True:
         if not error:
             nfcid = ":"
             print("UID: " + ':'.join(str(x) for x in uid))
-            time.sleep(2)
+    time.sleep(2)
 
 
 
