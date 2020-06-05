@@ -66,6 +66,9 @@ try:
                 nfcid = ":"
                 print(f"{datetime.datetime.now()} - UID: " + ':'.join(str(x) for x in uid))
                 logger.info(f"{datetime.datetime.now()} - UID: " + ':'.join(str(x) for x in uid))
+        else:
+            print(f"I have errored: {error}")
+            logger.info(f"I have errored: {error}")
         time.sleep(2)
 except KeyboardInterrupt:
     GPIO.cleanup()
