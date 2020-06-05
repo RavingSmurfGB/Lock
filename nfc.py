@@ -57,6 +57,7 @@ while True:
     logger.info("waiting for card read")
     nfcid, text = reader.read()
     if nfcid is None:
+        time.sleep(2)
         continue
     with open("cards.txt", "r") as a_file:
         for line in a_file.readlines():
