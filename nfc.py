@@ -53,6 +53,7 @@ except:
     logger.info("cards file does not exists and will be created")
 
 while True:
+    logger.info("waiting for card read")
     nfcid, text = reader.read()
     if nfcid is None:
         continue
