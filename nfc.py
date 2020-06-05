@@ -62,7 +62,7 @@ while True:
         (error, uid) = rdr.anticoll()
         if not error:
             nfcid = ":"
-            print("UID: " + str(nfcid.join(uid)))
+            print("UID: " + ':'.join(str(x) for x in uid))
                 
 
 
