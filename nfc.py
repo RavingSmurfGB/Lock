@@ -55,7 +55,9 @@ except:
 
 try:
     while True:
+        logger.info("waiting for card")
         rdr.wait_for_tag()
+        logger.info("I read a card")
         (error, tag_type) = rdr.request()
         if not error:
             print("Tag detected")
