@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 from lock import alternate_lock
 import time, logging
 from pirc522 import RFID
+import datetime
 
 rdr = RFID()
 
@@ -52,18 +53,19 @@ except:
     #print("cards file does not exists and will be created")
     logger.info("cards file does not exists and will be created")
 
-
-while True:
-    rdr.wait_for_tag()
-    (error, tag_type) = rdr.request()
-    if not error:
-        print("Tag detected")
-        (error, uid) = rdr.anticoll()
+try:
+    while True:
+        rdr.wait_for_tag()
+        (error, tag_type) = rdr.request()
         if not error:
-            nfcid = ":"
-            print("UID: " + ':'.join(str(x) for x in uid))
-    time.sleep(2)
-
+            print("Tag detected")
+            (error, uid) = rdr.anticoll()
+            if not error:
+                nfcid = ":"
+                print(f"{datetime.datetime.now()} - UID: " + ':'.join(str(x) for x in uid))
+        time.sleep(2)
+except KeyboardInterrupt:
+    GPIO.cleanup()
 
 
 
