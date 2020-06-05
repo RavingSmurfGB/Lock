@@ -53,8 +53,10 @@ except:
     logger.info("cards file does not exists and will be created")
 
 while True:
+    nfcid, text = reader.read()
+    if nfcid is None:
+        continue
     with open("cards.txt", "r") as a_file:
-        nfcid, text = reader.read()
         for line in a_file.readlines():
             card = line.strip()
             if card == str(nfcid): # insert variable for card instead of "3"
