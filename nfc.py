@@ -61,7 +61,8 @@ while True:
         print("Tag detected")
         (error, uid) = rdr.anticoll()
         if not error:
-            print("UID: " + str(join(uid)))
+            nfcid = ":"
+            print("UID: " + str(nfcid.join(uid)))
                 
 
 
