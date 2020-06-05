@@ -1,0 +1,13 @@
+sudo nano /etc/systemd/system/lock.service
+
+[Unit]
+Description=Lock Service
+After=multi-user.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/Lock/
+ExecStart=/usr/bin/python3 /home/pi/Lock/nfc.py
+
+[Install]
+WantedBy=multi-user.target
