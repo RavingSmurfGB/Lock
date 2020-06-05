@@ -56,14 +56,13 @@ except:
 while True:
     rdr.wait_for_tag()
     (error, tag_type) = rdr.request()
-    time.sleep(2)
     if not error:
         print("Tag detected")
         (error, uid) = rdr.anticoll()
         if not error:
             nfcid = ":"
             print("UID: " + ':'.join(str(x) for x in uid))
-                
+    time.sleep(2)
 
 
 
