@@ -101,6 +101,9 @@ def Lock():
                     #Sets the pins as per the sequence 
                     GPIO.output(pins[pin], halfstep_seq[step][pin])
                 time.sleep(timings)
+        for pin in range(4):
+        #Switches all pins off to see if it helps with heat issue 
+            GPIO.output(pins[pin], 0)
 
 def Unlock():
     logger.info("I un-locked the door")
@@ -119,7 +122,10 @@ def Unlock():
                     #Sets the pins as per the sequence 
                     GPIO.output(pins[pin], halfstep_seq[step][pin])
                 time.sleep(timings) 
-
+        for pin in range(4):
+        #Switches all pins off to see if it helps with heat issue 
+            GPIO.output(pins[pin], 0)    
+        
 
 ##////////////////If file status was locked on last startup/////////////////
 try: # this code builds in redundancy, if you dont have your key simply cycle the power to the device and it will unlock
