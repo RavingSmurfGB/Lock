@@ -66,7 +66,7 @@ try:
                 nfcid = ':'.join(str(x) for x in uid)
                 print(f"{datetime.datetime.now()} - UID: " + nfcid)
                 logger.info(f"{datetime.datetime.now()} - UID: " + nfcid)
-                 with open("cards.txt", "r") as a_file:
+                with open("cards.txt", "r") as a_file:
                     for line in a_file.readlines():
                         card = line.strip()
                         if card == nfcid:
