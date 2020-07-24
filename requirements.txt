@@ -1,2 +1,2 @@
 #This will list out the requirements for this program to work
-pirc522
+pi-rc522
