@@ -1,3 +1,2 @@
 #This will list out the requirements for this program to work
-spi-py
 pirc522
