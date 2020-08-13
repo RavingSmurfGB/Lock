@@ -133,6 +133,7 @@ try: # this code builds in redundancy, if you dont have your key simply cycle th
     f = open("status.txt", "rt")
     contents = f.read()
     f.close()
+    time.stop(1)
     if contents == "locked":
         logger.info("Locked on last shutdown, unlocking door")
         Unlock()
