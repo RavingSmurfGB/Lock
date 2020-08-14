@@ -5,10 +5,11 @@ This project is designed to be a smart lock that can be opened via NFC.
 **Installation:**
 1.	Ensure to enable SPI interface via:
 
-- Entering `sudo raspi-config`
-
-- Select option 5 Interfacing Options
-- Then enable P4 SPI
+  a. Entering `sudo raspi-config`
+  
+  b. Select option 5 Interfacing Options
+  
+  c. Then enable P4 SPI
 
 
 2.	Install any requirements via `pip3 install requirements.txt`
@@ -23,7 +24,7 @@ This project is designed to be a smart lock that can be opened via NFC.
 
 Create the dervice file by typing `sudo nano /etc/systemd/system/lock.service`
 Enter the following: (be sure to change the directories if needed)
-```
+```sh
 [Unit]
 Description=Lock Service
 After=multi-user.target
@@ -38,7 +39,7 @@ WantedBy=multi-user.target
 ```
 **Other Info:**
 
-nfy.py is the main program while importing motor controls from lock.py
+nfc.py is the main program while importing motor controls from lock.py
 
 Logs will enter in to the same directory as the repro as DoorLock.log
 
