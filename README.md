@@ -8,7 +8,7 @@ This project is designed to be a smart lock that can be opened via NFC.
    1. Entering `sudo raspi-config`
    1. Select option 5 Interfacing Options
    1. Then enable P4 SPI
-1.	Install any requirements via `pip3 install requirements.txt`
+1.	Install any requirements via `pip3 install -r requirements.txt`
 
 **Wiring Diagram:**
 ![]( https://i.imgur.com/529UkLd.png)
