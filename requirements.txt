@@ -1,4 +1,5 @@
 #This will list out the requirements for this program to work
 pi-rc522
+rpi
 
 # also please enable serial interface via sudo raspi-config otherwise code will error
