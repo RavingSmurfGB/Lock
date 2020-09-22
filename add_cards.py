@@ -62,9 +62,9 @@ try:
                 nfcid = ':'.join(str(x) for x in uid)
                 print(f"{datetime.datetime.now()} - UID: " + nfcid)
                 logger.info(f"{datetime.datetime.now()} - UID: " + nfcid)
-                f = open("cards.txt", "w")
+                f = open("cards.txt", "a")
                 f.write(nfcid)
-
+                f.close()
             
         else:
             print(f"I have errored: {error}")
