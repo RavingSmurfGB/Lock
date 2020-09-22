@@ -26,6 +26,8 @@ Description=Lock Service
 After=multi-user.target
 
 [Service]
+User=pi
+Group=pi
 Type=simple
 WorkingDirectory=/home/pi/Lock/
 ExecStart=/usr/bin/python3 /home/pi/Lock/nfc.py
@@ -42,4 +44,4 @@ Logs will enter in to the same directory as the repro as DoorLock.log
 For redundancy reasons once the device has lost power and is in a locked state, on next run it will unlock.
 
 If you would like a simple command to alternate the lock, then simply type this in to a terminal and when "lock" is written it will alternate the lock
-echo "alias lock='python3 /home/pi/Lock/alternate_lock.py'" >> ~/.bashrc
+echo "alias lock='cd /home/pi/Lock && python3 /home/pi/Lock/alternate_lock.py && cd -' " >> ~/.bashrc
