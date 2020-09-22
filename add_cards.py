@@ -63,6 +63,7 @@ try:
                 print(f"{datetime.datetime.now()} - UID: " + nfcid)
                 logger.info(f"{datetime.datetime.now()} - UID: " + nfcid)
                 f = open("cards.txt", "a")
+                print(nfcid)
                 f.write(nfcid)
                 f.close()
             
