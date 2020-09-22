@@ -1,11 +1,7 @@
-from pathlib import Path
-import RPi.GPIO as GPIO
-from lock import alternate_lock
-import time, logging
 from pirc522 import RFID
+from pathlib import Path
+import time, logging
 import datetime
-
-rdr = RFID()
 
 
 ##////////////////logging Setup/////////////////
@@ -34,11 +30,10 @@ logger.addHandler(fh)
 logger.addHandler(ch)
 
 #print("NFC Loading...")
-logger.info("NFC Loading...")
+logger.info("Adding Cards Loading...")
 ##////////////////
 
-
-##Check if file exsists
+##////////////////Check if file exists/////////////////
 try:
     my_file = Path("cards.txt")
     if my_file.is_file():
@@ -66,12 +61,17 @@ try:
                 nfcid = ':'.join(str(x) for x in uid)
                 print(f"{datetime.datetime.now()} - UID: " + nfcid)
                 logger.info(f"{datetime.datetime.now()} - UID: " + nfcid)
+                f = open("cards.txt", "w")
+                f.write(nfcid)
+
+             
+
                 with open("cards.txt", "r") as a_file:
                     for line in a_file.readlines():
                         card = line.strip()
                         if card == nfcid:
                             logger.info(f"{nfcid} was matched with allowed cards")
-                            alternate_lock()
+                            
         else:
             print(f"I have errored: {error}")
             logger.error(f"I have errored: {error}")
@@ -79,8 +79,6 @@ try:
 except KeyboardInterrupt:
     GPIO.cleanup()
 
-
-
-
+##////////////////
 
 
