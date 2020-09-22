@@ -3,6 +3,7 @@ from pathlib import Path
 import time, logging
 import datetime
 
+rdr = RFID()
 
 ##////////////////logging Setup/////////////////
 # create logger with the name 'SleepyServer'
@@ -64,14 +65,7 @@ try:
                 f = open("cards.txt", "w")
                 f.write(nfcid)
 
-             
-
-                with open("cards.txt", "r") as a_file:
-                    for line in a_file.readlines():
-                        card = line.strip()
-                        if card == nfcid:
-                            logger.info(f"{nfcid} was matched with allowed cards")
-                            
+            
         else:
             print(f"I have errored: {error}")
             logger.error(f"I have errored: {error}")
