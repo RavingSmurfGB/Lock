@@ -89,7 +89,7 @@ try:
                         if card == nfcid:
                             print("Duplicate card attempted to be added" + "\n")   
                             logger.info("Duplicate card attempted to be added") 
-                        elif card != nfcid:
+                        elif card is not nfcid:
                             print("card was added" + "\n" )
                             f = open("cards.txt", "a")
                             f.write(nfcid + "\n")
