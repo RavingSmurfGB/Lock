@@ -78,9 +78,16 @@ try:
                 nfcid = ':'.join(str(x) for x in uid)
                 print(f"{datetime.datetime.now()} - UID: " + nfcid + "\n")
                 logger.info(f"{datetime.datetime.now()} - UID: " + nfcid)
-                f = open("cards.txt", "a")
-                f.write(nfcid)
-                f.close()
+                with open("cards.txt", "r") as a_file:
+                    for line in a_file.readlines():
+                        card = line.strip()
+                        if card == nfcid:
+                            print("Duplicate card attempted to be added" + "\n")   
+                            logger.info("Duplicate card attempted to be added") 
+                        elif card != nfcid:
+                            f = open("cards.txt", "a")
+                            f.write(nfcid)
+                            f.close()
             
         else:
             print(f"I have errored: {error}")
