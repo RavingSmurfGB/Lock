@@ -85,10 +85,10 @@ try:
                 with open("cards.txt", "r") as a_file:
                     lines = a_file.readlines()
                     if f"{nfcid}\n" in lines:
-                        print("Duplicate card attempted to be added" + "\n")   
+                        print("DUPLICATE CARD NOT ADDED" + "\n")   
                         logger.info("Duplicate card attempted to be added")
                     else:
-                        print("card was added" + "\n" )
+                        print("THIS CARD WAS ADDED" + "\n" )
                         f = open("cards.txt", "a")
                         f.write(nfcid + "\n")
                         f.close()
