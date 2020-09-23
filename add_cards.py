@@ -83,17 +83,25 @@ try:
                 print(f"{datetime.datetime.now()} - UID: " + nfcid + "\n")
                 logger.info(f"{datetime.datetime.now()} - UID: " + nfcid)
                 with open("cards.txt", "r") as a_file:
-
-                    for line in a_file.readlines():
-                        card = line.strip()
-                        if card == nfcid:
-                            print("Duplicate card attempted to be added" + "\n")   
-                            logger.info("Duplicate card attempted to be added") 
-                        elif card != nfcid:
-                            print("card was added" + "\n" )
-                            f = open("cards.txt", "a")
-                            f.write(nfcid + "\n")
-                            f.close()
+                    lines = a_file.readlines()
+                    if nfcid in lines:
+                        print("Duplicate card attempted to be added" + "\n")   
+                        logger.info("Duplicate card attempted to be added")
+                    else:
+                        print("card was added" + "\n" )
+                        f = open("cards.txt", "a")
+                        f.write(nfcid + "\n")
+                        f.close()
+                    #for line in a_file.readlines():
+                    #    card = line.strip()
+                    #    if card == nfcid:
+                    #        print("Duplicate card attempted to be added" + "\n")   
+                    #        logger.info("Duplicate card attempted to be added") 
+                    #    elif card != nfcid:
+                    #        print("card was added" + "\n" )
+                    #        f = open("cards.txt", "a")
+                    #        f.write(nfcid + "\n")
+                    #        f.close()
             
         else:
             print(f"I have errored: {error}")
