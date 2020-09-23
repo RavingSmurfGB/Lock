@@ -48,7 +48,7 @@ try:
         f = open("cards.txt", "x")
         f.close()
         f = open("cards.txt", "a")
-        f.write("#This file contains authorised cards for the system" " +\n" )
+        f.write("#This file contains authorised cards for the system" + "\n" )
         f.close()
         
 except:
