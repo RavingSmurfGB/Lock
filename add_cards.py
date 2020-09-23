@@ -53,7 +53,7 @@ except:
 
 
 try:
-    print("Shutting down potential interputing service")
+    print("Shutting down potential interputing service" + "\n")) 
     subprocess.run(["sudo", "systemctl", "stop", "lock"])
     print("Please wait 2 seconds")
     time.sleep(2)
@@ -77,7 +77,6 @@ try:
                 print(f"{datetime.datetime.now()} - UID: " + nfcid)
                 logger.info(f"{datetime.datetime.now()} - UID: " + nfcid)
                 f = open("cards.txt", "a")
-                print(nfcid)
                 f.write(nfcid)
                 f.close()
             
