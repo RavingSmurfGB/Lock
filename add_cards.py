@@ -48,7 +48,7 @@ try:
         f = open("cards.txt", "x")
         f.close()
         f = open("cards.txt", "a")
-        f.write("#This file contains authorised cards for the system")
+        f.write("#This file contains authorised cards for the system" + "\n")
         f.close()
         
 except:
@@ -90,9 +90,9 @@ try:
                             print("Duplicate card attempted to be added" + "\n")   
                             logger.info("Duplicate card attempted to be added") 
                         elif card != nfcid:
-                            print("card was added"+ "\n" )
+                            print("card was added" + "\n" )
                             f = open("cards.txt", "a")
-                            f.write(nfcid)
+                            f.write(nfcid + "\n")
                             f.close()
             
         else:
