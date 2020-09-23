@@ -70,7 +70,7 @@ try:
         logger.info("I read a card")
         (error, tag_type) = rdr.request()
         if not error:
-            print("Tag detected")
+            print("Tag detected, please wait 2 seconds before trying to add anymore cards")
             (error, uid) = rdr.anticoll()
             if not error:
                 nfcid = ':'.join(str(x) for x in uid)
@@ -86,6 +86,7 @@ try:
             logger.error(f"I have errored: {error}")
         time.sleep(2)
 except:
+    subprocess.run(["sudo", "systemctl", "start", "lock"])
     GPIO.cleanup()
 
 ##////////////////
