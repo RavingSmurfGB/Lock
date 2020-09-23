@@ -76,7 +76,7 @@ try:
             print(f"I have errored: {error}")
             logger.error(f"I have errored: {error}")
         time.sleep(2)
-except KeyboardInterrupt:
+except:
     GPIO.cleanup()
 
 

@@ -51,9 +51,9 @@ except:
     logger.info("cards file does not exists and will be created")
 
 
-try:   
-    subprocess.run(["sudo", "systemctl", "stop", "lock"]
-    
+try:
+    print("hi")
+    subprocess.run(["sudo", "systemctl", "stop", "lock"])
 except:
     GPIO.cleanup()
 
