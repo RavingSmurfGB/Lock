@@ -2,6 +2,7 @@ from pirc522 import RFID
 from pathlib import Path
 import time, logging
 import datetime
+import subprocess
 
 rdr = RFID()
 
@@ -49,6 +50,13 @@ except:
     #print("cards file does not exists and will be created")
     logger.info("cards file does not exists and will be created")
 
+
+try:   
+    subprocess.run(["sudo", "systemctl", "stop", "lock"]
+    
+except:
+    GPIO.cleanup()
+
 try:
     while True:
         logger.info("waiting for card")
@@ -71,7 +79,7 @@ try:
             print(f"I have errored: {error}")
             logger.error(f"I have errored: {error}")
         time.sleep(2)
-except KeyboardInterrupt:
+except:
     GPIO.cleanup()
 
 ##////////////////
