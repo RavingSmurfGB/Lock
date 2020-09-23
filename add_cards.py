@@ -57,7 +57,7 @@ try:
     subprocess.run(["sudo", "systemctl", "stop", "lock"])
     print("This service will be re-enabled once cards are added")
     print("WARNING ONLY EXIT VIA CTRL+C - exiting any other way will not restart the service" + "\n")
-    time.sleep(10)
+    time.sleep(2)
     
 
 except:
