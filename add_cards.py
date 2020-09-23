@@ -55,7 +55,7 @@ except:
 try:
     print("Shutting down potential interputing service" + "\n")
     subprocess.run(["sudo", "systemctl", "stop", "lock"])
-    print("Please wait 2 seconds")
+    print("This service will be re-enabled once cards are added" + "\n")
     time.sleep(2)
     
 
@@ -64,17 +64,17 @@ except:
 
 try:
     while True:
-        print("waiting for card")
+        print("Please touch the card")
         logger.info("waiting for card")
         rdr.wait_for_tag()
         logger.info("I read a card")
         (error, tag_type) = rdr.request()
         if not error:
-            print("Tag detected, please wait 2 seconds before trying to add anymore cards")
+            print("Card detected, please wait 2 seconds before trying to add anymore cards")
             (error, uid) = rdr.anticoll()
             if not error:
                 nfcid = ':'.join(str(x) for x in uid)
-                print(f"{datetime.datetime.now()} - UID: " + nfcid)
+                print(f"{datetime.datetime.now()} - UID: " + nfcid + "\n")
                 logger.info(f"{datetime.datetime.now()} - UID: " + nfcid)
                 f = open("cards.txt", "a")
                 f.write(nfcid)
