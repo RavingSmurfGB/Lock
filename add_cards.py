@@ -48,7 +48,7 @@ try:
         f = open("cards.txt", "x")
         f.close()
         f = open("cards.txt", "a")
-        f.write("#This file contains authorised cards for the system\n" )
+        f.write("#This file contains authorised cards for the system" " +\n" )
         f.close()
         
 except:
@@ -60,7 +60,7 @@ try:
     print("\n" + "Shutting down potential interputing service" + "\n")
     subprocess.run(["sudo", "systemctl", "stop", "lock"])
     print("This service will be re-enabled once cards are added")
-    print("WARNING ONLY EXIT VIA CTRL+C - exiting any other way will not restart the service" + "\n")
+    print("WARNING ONLY EXIT VIA CTRL+C - exiting any other way will not restart the service"+ "\n")
     time.sleep(2)
     
 
