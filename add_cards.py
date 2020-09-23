@@ -48,7 +48,7 @@ try:
         f = open("cards.txt", "x")
         f.close()
         f = open("cards.txt", "a")
-        f.write("#This file contains authorised cards for the system" )
+        f.write("#This file contains authorised cards for the system\n" )
         f.close()
         
 except:
@@ -84,7 +84,7 @@ try:
                 logger.info(f"{datetime.datetime.now()} - UID: " + nfcid)
                 with open("cards.txt", "r") as a_file:
                     lines = a_file.readlines()
-                    if nfcid in lines:
+                    if f"{nfcid}\n" in lines:
                         print("Duplicate card attempted to be added" + "\n")   
                         logger.info("Duplicate card attempted to be added")
                     else:
