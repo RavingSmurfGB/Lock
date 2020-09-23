@@ -1,5 +1,6 @@
 from pirc522 import RFID
 from pathlib import Path
+import RPi.GPIO as GPIO
 import time, logging
 import datetime
 import subprocess
@@ -52,13 +53,18 @@ except:
 
 
 try:
-    print("hi")
+    print("Shutting down potential interputing service")
     subprocess.run(["sudo", "systemctl", "stop", "lock"])
+    print("Please wait 2 seconds")
+    time.sleep(2)
+    
+
 except:
     GPIO.cleanup()
 
 try:
     while True:
+        print("waiting for card")
         logger.info("waiting for card")
         rdr.wait_for_tag()
         logger.info("I read a card")
