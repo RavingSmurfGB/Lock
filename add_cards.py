@@ -47,6 +47,10 @@ try:
         logger.info("cards file does not exists and will be created")
         f = open("cards.txt", "x")
         f.close()
+        f = open("cards.txt", "a")
+        f.write("#This file contains authorised cards for the system")
+        f.close()
+        
 except:
     #print("cards file does not exists and will be created")
     logger.info("cards file does not exists and will be created")
@@ -79,6 +83,7 @@ try:
                 print(f"{datetime.datetime.now()} - UID: " + nfcid + "\n")
                 logger.info(f"{datetime.datetime.now()} - UID: " + nfcid)
                 with open("cards.txt", "r") as a_file:
+
                     for line in a_file.readlines():
                         card = line.strip()
                         if card == nfcid:
