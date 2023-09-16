@@ -1,6 +1,7 @@
 # PiLock
 
 This project is designed to be a smart lock that can be opened via NFC.
+- The status of this project is unknown and unfinished
 
 **Installation:**
 
